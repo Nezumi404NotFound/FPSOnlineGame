@@ -491,6 +491,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d10f1086c9aedc145874e0ac2b18875e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  playerPosition: {fileID: 0}
+  playerCamera: {fileID: 0}
+  cameraFollow: {fileID: 0}
+  smoothTime: 0.15
 --- !u!4 &1471319199 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2595929170414890372, guid: f57d86e8fc915d34da27d2e7af2ab3f8, type: 3}
