@@ -7,9 +7,7 @@ public class PlayerController : MonoBehaviour
     // 组件引用
     private Rigidbody rb;
     private Animator playerAnimator;
-    public GameObject playerPosition;
     public GameObject playerCamera;
-    public GameObject cameraFollow;
 
     // 输入变量
     private float horizontalInput;
@@ -35,18 +33,16 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("Horizontal: " + horizontalInput + ", Vertical: " + verticalInput);
+        //设置输入延迟，帮助混合树动画过渡
         smoothX = Mathf.SmoothDamp(smoothX, horizontalInput, ref currentVelocityX, smoothTime);
         smoothZ = Mathf.SmoothDamp(smoothZ, verticalInput, ref currentVelocityZ, smoothTime);
-        playerCamera.transform.position = Vector3.SmoothDamp(playerCamera.transform.position, cameraFollow.transform.position, ref currentVelocity, smoothTime);
         playerAnimator.SetFloat("VelocityX", smoothX);
         playerAnimator.SetFloat("VelocityZ", smoothZ);
     }
 
     private void FixedUpdate()
     {
-        Vector3 moveDirection = (playerPosition.transform.forward * verticalInput + playerPosition.transform.right * horizontalInput).normalized;
-        rb.linearVelocity = new Vector3(moveDirection.x * moveSpeed, rb.linearVelocity.y, moveDirection.z * moveSpeed);
+        rb.linearVelocity = new Vector3(smoothX * moveSpeed, rb.linearVelocity.y, smoothZ * moveSpeed);
     }
 
     public void OnMove(InputAction.CallbackContext context)

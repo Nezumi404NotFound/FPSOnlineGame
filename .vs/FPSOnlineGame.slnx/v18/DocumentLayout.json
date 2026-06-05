@@ -1,13 +1,13 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Nezumi\\FPSOnlineGame\\",
+  "WorkspaceRootPath": "D:\\Unity Projects\\FPSOnlineGame\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|c:\\users\\nezumi\\fpsonlinegame\\assets\\script\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Unity Projects\\FPSOnlineGame\\Assets\\Script\\PlayerController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Script\\PlayerController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|c:\\users\\nezumi\\fpsonlinegame\\assets\\script\\cameracontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|d:\\unity projects\\fpsonlinegame\\assets\\script\\cameracontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\cameracontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -24,9 +24,9 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "CameraController.cs",
-              "DocumentMoniker": "C:\\Users\\Nezumi\\FPSOnlineGame\\Assets\\Script\\CameraController.cs",
+              "DocumentMoniker": "D:\\Unity Projects\\FPSOnlineGame\\Assets\\Script\\CameraController.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\CameraController.cs",
-              "ToolTip": "C:\\Users\\Nezumi\\FPSOnlineGame\\Assets\\Script\\CameraController.cs",
+              "ToolTip": "D:\\Unity Projects\\FPSOnlineGame\\Assets\\Script\\CameraController.cs",
               "RelativeToolTip": "Assets\\Script\\CameraController.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAuwAQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -36,13 +36,13 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "PlayerController.cs",
-              "DocumentMoniker": "C:\\Users\\Nezumi\\FPSOnlineGame\\Assets\\Script\\PlayerController.cs",
+              "DocumentMoniker": "D:\\Unity Projects\\FPSOnlineGame\\Assets\\Script\\PlayerController.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\PlayerController.cs",
-              "ToolTip": "C:\\Users\\Nezumi\\FPSOnlineGame\\Assets\\Script\\PlayerController.cs",
+              "ToolTip": "D:\\Unity Projects\\FPSOnlineGame\\Assets\\Script\\PlayerController.cs",
               "RelativeToolTip": "Assets\\Script\\PlayerController.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAADwvzYAAAAXAAAAAAAAAA==",
+              "ViewState": "AgIAAC4AAAAAAAAAAAAowCMAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-03T07:14:09.522Z",
+              "WhenOpened": "2026-06-05T08:24:26.706Z",
               "EditorCaption": ""
             }
           ]
