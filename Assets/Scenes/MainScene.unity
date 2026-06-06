@@ -246,6 +246,52 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!1 &201072064
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 201072066}
+  - component: {fileID: 201072065}
+  m_Layer: 0
+  m_Name: Camera Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &201072065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201072064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74405c6093be7c642b461c844cd02291, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraController
+  playerCamera: {fileID: 1544301170}
+  cameraFollowPosition: {fileID: 568391460}
+--- !u!4 &201072066
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201072064}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.20399, y: 1.60535, z: 0.40994}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &344782132
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,6 +410,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3127580894697482948, guid: f57d86e8fc915d34da27d2e7af2ab3f8, type: 3}
   m_PrefabInstance: {fileID: 4747691897624240828}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &568391460
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 568391461}
+  m_Layer: 0
+  m_Name: Camera Follow Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &568391461
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 568391460}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2056726941}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &873557197
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -678,7 +755,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1604348214}
   - component: {fileID: 1604348211}
-  - component: {fileID: 1604348213}
   - component: {fileID: 1604348212}
   m_Layer: 0
   m_Name: WeaponCamera
@@ -782,14 +858,6 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!81 &1604348213
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1604348210}
-  m_Enabled: 1
 --- !u!4 &1604348214
 Transform:
   m_ObjectHideFlags: 0
@@ -841,6 +909,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8e53c18e70760ae4d9ce13cc65b5bfb0, type: 3}
   m_PrefabInstance: {fileID: 873557197}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2056726941 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6134961094277432286, guid: f57d86e8fc915d34da27d2e7af2ab3f8, type: 3}
+  m_PrefabInstance: {fileID: 4747691897624240828}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4747691897624240828
 PrefabInstance:
@@ -1325,6 +1398,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2595929170414890372, guid: f57d86e8fc915d34da27d2e7af2ab3f8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1544301167}
+    - targetCorrespondingSourceObject: {fileID: 6134961094277432286, guid: f57d86e8fc915d34da27d2e7af2ab3f8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 568391461}
     - targetCorrespondingSourceObject: {fileID: 3127580894697482948, guid: f57d86e8fc915d34da27d2e7af2ab3f8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1920387113}
@@ -1343,3 +1419,4 @@ SceneRoots:
   - {fileID: 96242762}
   - {fileID: 1612143770}
   - {fileID: 4747691897624240828}
+  - {fileID: 201072066}
