@@ -34,15 +34,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Slash",
-                    "type": "Button",
-                    "id": "43a709fc-1bcf-456c-926b-7af1dce8155e",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Run",
                     "type": "Button",
                     "id": "2868df54-bf80-4bcd-9f4f-6e147e52c51b",
@@ -136,17 +127,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Courch",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a47dd0eb-99e4-4c5d-b430-d643ae3a8e0c",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Slash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

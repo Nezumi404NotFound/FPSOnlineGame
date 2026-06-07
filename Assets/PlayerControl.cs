@@ -120,15 +120,6 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Slash"",
-                    ""type"": ""Button"",
-                    ""id"": ""43a709fc-1bcf-456c-926b-7af1dce8155e"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Run"",
                     ""type"": ""Button"",
                     ""id"": ""2868df54-bf80-4bcd-9f4f-6e147e52c51b"",
@@ -227,17 +218,6 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""a47dd0eb-99e4-4c5d-b430-d643ae3a8e0c"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Slash"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""e8af4f8f-9012-4b62-be2d-95594ce7468b"",
                     ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": """",
@@ -268,7 +248,6 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Courch = m_Player.FindAction("Courch", throwIfNotFound: true);
-        m_Player_Slash = m_Player.FindAction("Slash", throwIfNotFound: true);
         m_Player_Run = m_Player.FindAction("Run", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
     }
@@ -354,7 +333,6 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Courch;
-    private readonly InputAction m_Player_Slash;
     private readonly InputAction m_Player_Run;
     private readonly InputAction m_Player_Jump;
     /// <summary>
@@ -380,10 +358,6 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Courch".
         /// </summary>
         public InputAction @Courch => m_Wrapper.m_Player_Courch;
-        /// <summary>
-        /// Provides access to the underlying input action "Player/Slash".
-        /// </summary>
-        public InputAction @Slash => m_Wrapper.m_Player_Slash;
         /// <summary>
         /// Provides access to the underlying input action "Player/Run".
         /// </summary>
@@ -427,9 +401,6 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
             @Courch.started += instance.OnCourch;
             @Courch.performed += instance.OnCourch;
             @Courch.canceled += instance.OnCourch;
-            @Slash.started += instance.OnSlash;
-            @Slash.performed += instance.OnSlash;
-            @Slash.canceled += instance.OnSlash;
             @Run.started += instance.OnRun;
             @Run.performed += instance.OnRun;
             @Run.canceled += instance.OnRun;
@@ -456,9 +427,6 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
             @Courch.started -= instance.OnCourch;
             @Courch.performed -= instance.OnCourch;
             @Courch.canceled -= instance.OnCourch;
-            @Slash.started -= instance.OnSlash;
-            @Slash.performed -= instance.OnSlash;
-            @Slash.canceled -= instance.OnSlash;
             @Run.started -= instance.OnRun;
             @Run.performed -= instance.OnRun;
             @Run.canceled -= instance.OnRun;
@@ -526,13 +494,6 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnCourch(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "Slash" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnSlash(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Run" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

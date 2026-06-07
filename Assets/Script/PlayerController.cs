@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
+using UnityEngine.Windows;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,8 +11,9 @@ public class PlayerController : MonoBehaviour
     public GameObject playerCamera;
 
     // 输入变量
-    private float horizontalInput;
-    private float verticalInput;
+    private Vector2 rawInput;
+    private float horizontalSpeed;
+    private float verticalSpeed;
 
     // 用来平滑输入的新变量
     private float smoothX;
@@ -21,9 +23,11 @@ public class PlayerController : MonoBehaviour
     public float smoothTime = 0.15f;
 
 
-    // 控制变量
-    private enum PlayerMovingState { Walking, Running, Courching}
+   // 玩家移动状态
+    public enum PlayerMovingState {Walking, Running, Courching}
     private PlayerMovingState nowState;
+
+    // 控制变量
     private float moveSpeed = 2f;
     void Start()
     {
@@ -34,10 +38,11 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(nowState);
-        //设置输入延迟，帮助混合树动画过渡
-        smoothX = Mathf.SmoothDamp(smoothX, horizontalInput, ref currentVelocityX, smoothTime);
-        smoothZ = Mathf.SmoothDamp(smoothZ, verticalInput, ref currentVelocityZ, smoothTime);
+        CalculateMovementSpeed();
+        Debug.Log(horizontalSpeed + ", " + verticalSpeed);
+        // 设置输入延迟，帮助混合树动画过渡
+        smoothX = Mathf.SmoothDamp(smoothX, horizontalSpeed, ref currentVelocityX, smoothTime);
+        smoothZ = Mathf.SmoothDamp(smoothZ, verticalSpeed, ref currentVelocityZ, smoothTime);
         playerAnimator.SetFloat("VelocityX", smoothX);
         playerAnimator.SetFloat("VelocityZ", smoothZ);
     }
@@ -49,23 +54,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        //设置不同移动状态下的速度
-        Vector2 input = context.ReadValue<Vector2>();
-        if (nowState == PlayerMovingState.Running) 
-        {
-            horizontalInput = input.x * 1.5f;
-            verticalInput = input.y * 1.5f;
-        }
-        else if(nowState == PlayerMovingState.Walking)
-        {
-            horizontalInput = input.x;
-            verticalInput = input.y;    
-        }
-        else if (nowState == PlayerMovingState.Courching)
-        {
-            horizontalInput = input.x * 0.7f;
-            verticalInput = input.y * 0.7f;
-        }
+        rawInput = context.ReadValue<Vector2>();
     }
     public void OnRun(InputAction.CallbackContext context) 
     {
@@ -85,19 +74,34 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed)
         {
-            // 如果已经处于下蹲动画
-            if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsTag("Crouch"))
+            if (nowState == PlayerMovingState.Courching)
             {
                 nowState = PlayerMovingState.Walking;
                 playerAnimator.SetBool("IsCourching", false);
-                
             }
-            //  不处于下蹲动画
-            else 
+            else
             {
                 nowState = PlayerMovingState.Courching;
                 playerAnimator.SetBool("IsCourching", true);
             }
+        }
+    }
+    private void CalculateMovementSpeed() 
+    {
+        if (nowState == PlayerMovingState.Running)
+        {
+            horizontalSpeed = rawInput.x * 1.5f;
+            verticalSpeed = rawInput.y * 1.5f;
+        }
+        else if (nowState == PlayerMovingState.Walking)
+        {
+            horizontalSpeed = rawInput.x;
+            verticalSpeed = rawInput.y;
+        }
+        else if (nowState == PlayerMovingState.Courching)
+        {
+            horizontalSpeed = rawInput.x * 0.7f;
+            verticalSpeed = rawInput.y * 0.7f;
         }
     }
 }
