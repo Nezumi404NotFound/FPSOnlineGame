@@ -29,6 +29,12 @@ public class PlayerController : MonoBehaviour
 
     // 控制变量
     private float moveSpeed = 2f;
+
+    // 地面检测变量
+    private bool isGrounded;
+    public GameObject groundCheckPoint;
+    private float groundCheckDistance = 0.1f;
+    public LayerMask groundLayer;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -38,8 +44,12 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        //设置不同状态速度
         CalculateMovementSpeed();
-        Debug.Log(horizontalSpeed + ", " + verticalSpeed);
+
+        //判断是否着地
+        isGrounded = Physics.CheckSphere(groundCheckPoint.transform.position, groundCheckDistance, groundLayer);    
+
         // 设置输入延迟，帮助混合树动画过渡
         smoothX = Mathf.SmoothDamp(smoothX, horizontalSpeed, ref currentVelocityX, smoothTime);
         smoothZ = Mathf.SmoothDamp(smoothZ, verticalSpeed, ref currentVelocityZ, smoothTime);
@@ -64,7 +74,7 @@ public class PlayerController : MonoBehaviour
             {
                 nowState = PlayerMovingState.Walking;
             }
-            else
+            else if (nowState == PlayerMovingState.Walking)
             {
                 nowState = PlayerMovingState.Running;
             }
@@ -83,6 +93,17 @@ public class PlayerController : MonoBehaviour
             {
                 nowState = PlayerMovingState.Courching;
                 playerAnimator.SetBool("IsCourching", true);
+            }
+        }
+    }
+    public void OnJump(InputAction.CallbackContext context) 
+    {
+        if (context.performed)
+        {
+            if(isGrounded)
+            {
+                playerAnimator.SetTrigger("Jump_trigger");
+                rb.AddForce(Vector3.up * 4f, ForceMode.Impulse);
             }
         }
     }
