@@ -25,6 +25,10 @@ public class CameraController : MonoBehaviour
         if (localPlayerObject != null)
         {
             var playerController = localPlayerObject.GetComponent<PlayerController>();
+            if (playerController.virtualCamera == null)
+            {
+                playerController.virtualCamera = this.virtualCamera;
+            }
             if (playerController != null) 
             {
                 virtualCamera.Follow = playerController.cameraFollowPoint.transform;

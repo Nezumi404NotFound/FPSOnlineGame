@@ -1,13 +1,15 @@
+using Cinemachine;
+using System.Collections;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Unity.Netcode;
 public class PlayerController : NetworkBehaviour
 {
     // 组件引用
     private Rigidbody rb;
     private Animator playerAnimator;
-    private Camera mainCamera;
-    public GameObject cameraFollowPoint;
+
+
 
     // 输入变量
     private Vector2 rawInput;
@@ -28,6 +30,8 @@ public class PlayerController : NetworkBehaviour
 
     // 控制变量
     private float moveSpeed = 2f;
+    public bool isAiming = false;
+    
 
     // 地面检测变量
     private bool isGrounded;
@@ -42,13 +46,22 @@ public class PlayerController : NetworkBehaviour
 
     //枪口焰粒子特效变量
     public ParticleSystem gunFirePrefab;
+
+    //相机控制变量
+    private Camera mainCamera;
+    public GameObject cameraFollowPoint;
+    public CinemachineVirtualCamera virtualCamera;
+    private Vector3 cameraOriginPosition;
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         playerAnimator = GetComponent<Animator>();
         mainCamera = Camera.main;
         nowState = PlayerMovingState.Walking;
-        //gunFirePrefab.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        gunFirePrefab.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        cameraOriginPosition = cameraFollowPoint.transform.localPosition;
     }
 
     void Update()
@@ -135,6 +148,20 @@ public class PlayerController : NetworkBehaviour
             isShootRaycast = false;
         }
     }
+    public void OnAim(InputAction.CallbackContext context) 
+    {
+        //瞄准时相机向前偏移
+        if (context.performed) 
+        {
+            StartCoroutine(MovingCameraInAiming());
+        }
+        //取消瞄准时相机回到原位
+        else if (context.canceled)
+        {
+            StopCoroutine(MovingCameraInAiming());
+            cameraFollowPoint.transform.localPosition = cameraOriginPosition;
+        }
+    }
     private void CalculateMovementSpeed() 
     {
         if (nowState == PlayerMovingState.Running)
@@ -155,8 +182,8 @@ public class PlayerController : NetworkBehaviour
         //射击时减少移速
         if (playerAnimator.GetBool("IsFiring"))
         {
-            horizontalSpeed *= 0.7f;
-            verticalSpeed *= 0.7f;
+            horizontalSpeed *= 0.8f;
+            verticalSpeed *= 0.8f;
         }
     }
     public void ShootRaycast() 
@@ -176,5 +203,15 @@ public class PlayerController : NetworkBehaviour
         {
             // 处理射击命中逻辑
         }
+    }
+    IEnumerator MovingCameraInAiming() 
+    {
+        Vector3 targetPosition = virtualCamera.transform.position + Vector3.forward * 1f;
+        while (Vector3.Distance(cameraFollowPoint.transform.localPosition, targetPosition) > 0.001f) 
+        {
+            cameraFollowPoint.transform.localPosition = Vector3.Lerp(cameraFollowPoint.transform.localPosition, targetPosition, Time.deltaTime * 5f);
+            yield return null;
+        }
+        cameraFollowPoint.transform.localPosition = targetPosition;
     }
 }
